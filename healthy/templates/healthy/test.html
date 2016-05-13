@@ -1,0 +1,18 @@
+{% extends 'healthy/base.html' %}
+{% load staticfiles %}
+
+
+  {% block content %}
+  {% if user.is_authenticated %}
+	<h1 class="sub-header">Test page</h1>
+
+ 	{% for lab in labs %}
+ 		<ul>
+ 			<li> {{ lab.pk }} </li>
+ 			<li> {{ lab.user__username }} </li>
+ 			<li> {{ lab.date }} </li>
+ 		</ul>
+ 	{% endfor %}
+
+{% endif %}
+{% endblock %}
