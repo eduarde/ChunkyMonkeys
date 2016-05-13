@@ -45,7 +45,7 @@ class LabResultsPage(ListView):
 	def get_queryset(self):
 		return Lab.objects.all()
 
-class charts(ListView):
+class ChartsPage(ListView):
 	model = Lab
 	template_name = 'healthy/charts.html'
 	context_object_name = 'labs'
