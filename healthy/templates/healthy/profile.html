@@ -1,0 +1,20 @@
+{% extends 'healthy/base.html' %}
+{% load staticfiles %}
+
+
+  {% block content %}
+  {% if user.is_authenticated %}
+    <h1 class="sub-header">Profile</small> </h1>
+ 
+ <br />
+  
+  {{ user.username}}
+
+  {{ user.last_name }}
+
+  <small>TODO: aici adaugam un buton pentru a salva date precum dob, gender </small> 
+
+ 	
+
+{% endif %}
+{% endblock %}
