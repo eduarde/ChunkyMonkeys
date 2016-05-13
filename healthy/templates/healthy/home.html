@@ -1,0 +1,27 @@
+{% extends 'healthy/base.html' %}
+{% load staticfiles %}
+
+
+	{% block content %}
+  {% if user.is_authenticated %}
+	<h1 class="sub-header">Home</h1>
+	
+  <div id="dashboard" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+          
+
+          <div class="row placeholders">
+            <div id="bubble" class="col-sm-6 col-md-6 placeholder">
+              <a href="#">  <img src="{% static 'img/comanda.jpg' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"></a>
+              <h4>Charts</h4>
+               <span class="text-muted">Vizualize your charts</span> 
+            </div>
+            <div id="bubble" class="col-sm-6 col-md-6 placeholder">
+              <a href="#"> <img src="{% static 'img/subcomanda.jpg' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"></a>
+              <h4>Lab Result</h4>
+                <span class="text-muted">Add a new lab result</span>  
+            </div>
+            
+          </div>
+</div>
+{% endif %}
+{% endblock %}
