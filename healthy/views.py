@@ -44,15 +44,3 @@ class LabResultsPage(ListView):
 
 	def get_queryset(self):
 		return Lab.objects.all()
-
-class charts(ListView):
-	model = Lab
-	template_name = 'healthy/charts.html'
-	context_object_name = 'labs'
-
-	@method_decorator(login_required)
-	def dispatch(self, *args, **kwargs):
-		return super(charts, self).dispatch(*args, **kwargs)
-
-	def get_queryset(self):
-		return Lab.objects.all().filter('user =', users.get_current_user())
