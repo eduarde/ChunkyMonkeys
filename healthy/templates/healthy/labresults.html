@@ -4,33 +4,40 @@
 
   {% block content %}
   {% if user.is_authenticated %}
-    <h1 class="sub-header">Lab Results for user {{ user.username }}</h1>
+    <h1 class="sub-header">Lab Results <small>{{ user.username }} </small> </h1>
  
+ <br />
   
- <ul>
+<div class="btn-group" role="group" aria-label="...">
+        <a href="#" type="button" class="btn btn-primary">Add</a>
+        <button type="button" id="edit" class="btn btn-default disabled">Edit</button>
+    </div>
+    <br /> <br />
+    <hr class="featurette-divider">
  			
  		
 <div class="table-responsive">
         <table class="table  table-striped">
             <thead>
                 <tr>
-                    <th></th>
+    
                     <th>Lab</th>
                     <th>Date</th>
+                    <th>View</th>
                 </tr>
             </thead>
             <tbody>
              {% for result in results %}
             <tr>
-                    <th></th>
-                    <th>{{ result.pk }}</th>
-                    <th>{{ result.date }}</th>
+                    <td>{{ result.pk }}</td>
+                    <td>{{ result.date }}</td>
+                    <td></td>
             </tr>
             {% endfor %}
  			</tbody>
         </table>         
     </div>
- </ul>
+
  	
 
 {% endif %}
