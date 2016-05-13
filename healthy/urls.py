@@ -1,10 +1,11 @@
 from django.conf.urls import url
 from . import views
+from .views import LandingPage, HomePage
 
 urlpatterns = [
 
-    url(r'^$', views.index, name='index'),
+    url(r'^$', LandingPage.as_view(), name='index'),
     url(r'^login/$', 'django.contrib.auth.views.login'),
-    url(r'^home/$', views.home, name='home'),
+    url(r'^home/$', HomePage.as_view(), name='home'),
 
 ]
