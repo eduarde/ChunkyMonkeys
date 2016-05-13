@@ -3,7 +3,7 @@ from django.views.generic import View, ListView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
-from .models import Lab
+from .models import Lab, LabResults
 
 # Create your views here.
 
@@ -33,4 +33,14 @@ class TestPage(ListView):
 	def get_queryset(self):
 		return Lab.objects.all()
 
+class LabResultsPage(ListView):
+	model = Lab
+	template_name = 'healthy/labresults.html'
+	context_object_name = 'results'
 
+	@method_decorator(login_required)
+	def dispach(self, *args, **kwargs):
+		return super(LabResultsPage, self).dispach(*args,**kwargs)
+
+	def get_queryset(self):
+		return Lab.objects.all()

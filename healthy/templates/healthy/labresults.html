@@ -4,36 +4,34 @@
 
   {% block content %}
   {% if user.is_authenticated %}
-	<h1 class="sub-header">Test page</h1>
-
- 	{% for lab in labs %}
- 		<ul>
+    <h1 class="sub-header">Lab Results for user {{ user.username }}</h1>
+ 
+  
+ <ul>
  			
  		
-
-
 <div class="table-responsive">
         <table class="table  table-striped">
             <thead>
                 <tr>
                     <th></th>
-                    <th>Numar</th>
                     <th>Lab</th>
-                    <th>Category</th>
-                </tr>
-                <tr>
-                	<th></th>
-                	<th>{{ lab.pk }}</th>
-                	<th>{{ lab.user.username }}</th>
-                	<th>{{ lab.date }}</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody>
+             {% for result in results %}
+            <tr>
+                    <th></th>
+                    <th>{{ result.pk }}</th>
+                    <th>{{ result.date }}</th>
+            </tr>
+            {% endfor %}
  			</tbody>
         </table>         
     </div>
- 		</ul>
- 	{% endfor %}
+ </ul>
+ 	
 
 {% endif %}
 {% endblock %}
