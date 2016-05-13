@@ -17,7 +17,7 @@ class UserProfile(models.Model):
 	dob = models.DateField('Date of birth',null=True)
 
 	def __str__(self):
-		return 'UserProfile ' + self.user
+		return 'UserProfile ' + self.user.username
 
 class Lab(models.Model):
 	user = models.ForeignKey('auth.User', verbose_name='User', null=True)
