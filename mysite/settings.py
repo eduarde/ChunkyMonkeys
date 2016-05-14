@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'healthy',
     'widget_tweaks',
+    'datetimewidget'
 ]
 
 MIDDLEWARE_CLASSES = [
