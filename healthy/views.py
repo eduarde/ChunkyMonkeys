@@ -2,11 +2,17 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, ListView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect
 
 from .models import Lab, LabResults
 from .forms import LabForm, LabResultsForm
 
-# Create your views here.
+
+@login_required
+def logout_page(request):
+    logout(request)
+    return HttpResponseRedirect('/')
 
 class LandingPage(View):
 	template_name = 'healthy/index.html'
@@ -41,7 +47,7 @@ class LabResultsPage(ListView):
 
 	
 	def get_queryset(self):
-		return Lab.objects.all()
+		return Lab.objects.all().filter(user=self.request.user)
 
 
 class LabResultsDetails(ListView):
@@ -83,13 +89,12 @@ class AddLabPage(ListView):
 	def post(self, request, *args, **kwargs):
 		form = self.form_class(request.POST)
 		if form.is_valid():
-			self.object = form.save(commit=True)
+			self.object = form.save(commit=False)
+			self.object.user = self.request.user
 			self.object.save()
 			
 			return redirect(self.success_url)
 	
-
-
 
 class AddLabResultsPage(ListView):
 	model = LabResults

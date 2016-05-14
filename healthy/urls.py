@@ -6,6 +6,7 @@ urlpatterns = [
 
     url(r'^$', LandingPage.as_view(), name='index'),
     url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^logout/$', views.logout_page, name='logout_page'),
     url(r'^home/$', HomePage.as_view(), name='home'),
     url(r'^test/$', TestPage.as_view(), name='test'),
     url(r'^labresults/$', LabResultsPage.as_view(), name='results'),

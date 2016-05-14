@@ -24,12 +24,9 @@ class LabResultsForm(forms.ModelForm):
 
 	class Meta:
 		model = LabResults
-		fields = ('item_ref','value',)
-		dateOptions = {
-			'format': 'mm/dd/yyyy',
-			'autoclose': True
-		}
+		fields = ('item_ref','value','general_ref')
 		widgets = {
-			'item_ref': forms.Select(attrs={'class': 'form-control'}),
-			'value': forms.NumberInput(attrs={'class': 'form-control'}),
+			'item_ref' : forms.Select(attrs={'class': 'form-control'}),
+			'general_ref' : forms.Select(attrs={'class': 'form-control'}),
+			'value' : forms.NumberInput(attrs={'class': 'form-control'}),
         }
