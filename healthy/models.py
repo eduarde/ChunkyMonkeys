@@ -109,27 +109,27 @@ class Item(models.Model):
 		(ng, 'ng/dl'),
 	)
 
-	name = models.CharField('Name', max_length=20, blank=False, null=False, choices=NAME_CHOICES, default=Leucocite)
+	name = models.CharField('Name', max_length=100, blank=False, null=False, choices=NAME_CHOICES, default=Leucocite)
 	abbr = models.CharField('Abbreviation', max_length=10, blank=True, null=True)
-	category = models.CharField('Category',max_length=20, blank=False, null=False, choices=CATEGORY_CHOICES, default=Hematologie)
+	category = models.CharField('Category',max_length=100, blank=False, null=False, choices=CATEGORY_CHOICES, default=Hematologie)
 	um = models.CharField('Unit', max_length=10, blank=False, null=False, choices=UM_CHOICES,default=mm3)
 
 	def __str__(self):
 		return 'Item ' + self.name
 
 class LabGeneral(models.Model):
-	threshold_min = models.DecimalField('Value', default=0, max_digits=3, decimal_places=2, null=True)
-	threshold_max = models.DecimalField('Value', default=0, max_digits=3, decimal_places=2, null=True)
+	threshold_min = models.DecimalField('Min Value', default=0, max_digits=4, decimal_places=2, null=True)
+	threshold_max = models.DecimalField('Max Value', default=0, max_digits=4, decimal_places=2, null=True)
 	item_ref = models.ForeignKey(Item,related_name="ItemGeneral")
 	def __str__(self):
-		return 'LabGeneral ' + self.lab_ref
+		return 'LabGeneral ' + self.item_ref.name
 
 class LabResults(models.Model):
 	user_ref = models.ForeignKey('auth.User')
 	lab_ref = models.ForeignKey(Lab, related_name="Lab")
 	item_ref = models.ForeignKey(Item,related_name="Item")
 	general_ref = models.ForeignKey(LabGeneral,related_name="LabGeneral")
-	value = models.DecimalField('Value', default=0, max_digits=3, decimal_places=2, null=True)
+	value = models.DecimalField('Value', default=0, max_digits=4, decimal_places=2, null=True)
 
 	def __str__(self):
 		return 'LabResult ' + str(self.lab_ref)

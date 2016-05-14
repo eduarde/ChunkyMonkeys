@@ -19,6 +19,7 @@ class LabForm(forms.ModelForm):
 			'date': DateWidget(attrs={'id':"iddata"}, bootstrap_version=3, options = dateOptions),
         }
 
+
 class LabResultsForm(forms.ModelForm):
 
 	class Meta:
