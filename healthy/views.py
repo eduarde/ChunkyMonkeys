@@ -55,12 +55,12 @@ class LabResultsDetails(ListView):
 
 
 	def get_queryset(self):
-<<<<<<< HEAD
+
 		return LabResults.objects.all()
 
 	#def get_object(self):
 	#	return get_object_or_404(LabResults, pk=self.kwargs.get("pk"))
-=======
+
 		return Lab.objects.all()
 
 
