@@ -2,28 +2,21 @@
 {% load staticfiles %}
 {% block extra_js%} <script src="http://malsup.github.com/jquery.form.js"></script> {% endblock %} 
 
-{% block extra_js%}
-<script src="http://malsup.github.com/jquery.form.js"></script>
-{% endblock %}
+
 
   {% block content %}
   {% if user.is_authenticated %}
     <h1 class="sub-header">Lab Results <small>{{ user.username }} </small> </h1>
-<<<<<<< HEAD
-         
-=======
  
  <br />
   
 <div class="btn-group" role="group" aria-label="...">
         <a type="button" href="{% url 'addLab' %}" class="btn btn-danger actionAdd">Add</a>
-        <button type="button" id="edit" class="btn btn-default disabled">Edit</button>
     </div>
     <br /> <br />
     <hr class="featurette-divider">
  			
  		
->>>>>>> origin/master
 <div class="table-responsive">
         <table class="table  table-striped">
             <thead>
@@ -43,6 +36,9 @@
                         <button class="btn btn-primary actionViewResults" rel="tooltip" data-placement="top" title="Details" onclick="location.href='{% url 'results_detail' pk=result.pk %}'">
                             <span class="glyphicon glyphicon-eye-open"></span>  
                         </button>
+                         <button class="btn btn-primary actionViewResults" rel="tooltip" data-placement="top" title="add" onclick="location.href='{% url 'addLabResults' pk=result.pk %}'">
+                            <span class="glyphicon glyphicon-plus"></span>  
+                        </button>
                     </td>
                     <td></td>
             </tr>
@@ -50,11 +46,6 @@
             </tbody>
         </table>         
     </div>
-<<<<<<< HEAD
- <!-- Modal -->
-=======
-
->>>>>>> origin/master
 
 {% endif %}
 {% endblock %}
