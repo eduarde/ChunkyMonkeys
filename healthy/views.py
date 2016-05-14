@@ -113,7 +113,9 @@ class AddLabResultsPage(ListView):
 	def post(self, request, *args, **kwargs):
 		form = self.form_class(request.POST)
 		if form.is_valid():
-			self.object = form.save(commit=True)
+			self.object = form.save(commit=False)
+			self.object.user_ref = self.request.user
+			self.object.lab_ref = self.get_object()
 			self.object.save()
 			return redirect(self.success_url)
 	
