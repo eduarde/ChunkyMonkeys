@@ -7,6 +7,9 @@
 
  {% block content %}
   {% if user.is_authenticated %}
+  <h1 class="sub-header">Add lab<small> </h1>
+
+
  <form method="POST" class="proiect-form">{% csrf_token %}
 	     {{ form.media }}
 	    <div class="row">
