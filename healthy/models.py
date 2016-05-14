@@ -24,7 +24,7 @@ class Lab(models.Model):
 	date = models.DateField('Date',blank=False, null=True)
 
 	def __str__(self):
-		return 'Lab ' + str(self.date)
+		return 'Lab ' + str(self.pk)
 
 class Item(models.Model):
 

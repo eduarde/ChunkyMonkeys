@@ -53,15 +53,11 @@ class LabResultsDetails(ListView):
 	def dispach(self, *args, **kwargs):
 		return super(LabResultsDetails, self).dispach(*args,**kwargs)
 
+	def get_object(self):
+		return get_object_or_404(Lab, pk=self.kwargs.get("pk"))	
 
 	def get_queryset(self):
-
-		return LabResults.objects.all()
-
-	#def get_object(self):
-	#	return get_object_or_404(LabResults, pk=self.kwargs.get("pk"))
-
-		return Lab.objects.all()
+		return LabResults.objects.all().filter(lab_ref=self.get_object())
 
 
 class ProfilePage(ListView):
