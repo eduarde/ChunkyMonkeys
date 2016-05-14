@@ -117,22 +117,22 @@ class Item(models.Model):
 	def __str__(self):
 		return 'Item ' + self.name
 
+class LabGeneral(models.Model):
+	threshold_min = models.DecimalField('Value', default=0, max_digits=3, decimal_places=2, null=True)
+	threshold_max = models.DecimalField('Value', default=0, max_digits=3, decimal_places=2, null=True)
+	item_ref = models.ForeignKey(Item,related_name="ItemGeneral")
+	def __str__(self):
+		return 'LabGeneral ' + self.lab_ref
+
 class LabResults(models.Model):
 	user_ref = models.ForeignKey('auth.User')
 	lab_ref = models.ForeignKey(Lab, related_name="Lab")
 	item_ref = models.ForeignKey(Item,related_name="Item")
+	general_ref = models.ForeignKey(LabGeneral,related_name="LabGeneral")
 	value = models.DecimalField('Value', default=0, max_digits=3, decimal_places=2, null=True)
 
 	def __str__(self):
 		return 'LabResult ' + str(self.lab_ref)
 
-class LabGeneral(models.Model):
-	user_ref = models.ForeignKey('auth.User')
-	item_ref = models.ForeignKey(Item,related_name="ItemGeneral")
-	threshold_min = models.DecimalField('Value', default=0, max_digits=3, decimal_places=2, null=True)
-	threshold_max = models.DecimalField('Value', default=0, max_digits=3, decimal_places=2, null=True)
-
-	def __str__(self):
-		return 'LabGeneral ' + self.lab_ref
 
 
