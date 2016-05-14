@@ -116,3 +116,10 @@ class AddLabResultsPage(ListView):
 			return redirect(self.success_url)
 	
 		return render(request, self.template_name, {'labresultsform': form})
+
+
+class ChartsPage(View):
+	template_name = 'healthy/charts.html'
+
+	def get(self, request):
+		return render(request, self.template_name)
