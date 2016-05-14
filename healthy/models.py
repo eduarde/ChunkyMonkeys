@@ -124,7 +124,7 @@ class LabResults(models.Model):
 	value = models.DecimalField('Value', default=0, max_digits=3, decimal_places=2, null=True)
 
 	def __str__(self):
-		return 'LabResult ' + self.lab_ref
+		return 'LabResult ' + str(self.lab_ref)
 
 class LabGeneral(models.Model):
 	user_ref = models.ForeignKey('auth.User')

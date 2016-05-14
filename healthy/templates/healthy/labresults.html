@@ -1,5 +1,6 @@
 {% extends 'healthy/base.html' %}
 {% load staticfiles %}
+{% block extra_js%} <script src="http://malsup.github.com/jquery.form.js"></script> {% endblock %} 
 
 {% block extra_js%}
 <script src="http://malsup.github.com/jquery.form.js"></script>
@@ -8,6 +9,9 @@
   {% block content %}
   {% if user.is_authenticated %}
     <h1 class="sub-header">Lab Results <small>{{ user.username }} </small> </h1>
+<<<<<<< HEAD
+         
+=======
  
  <br />
   
@@ -19,6 +23,7 @@
     <hr class="featurette-divider">
  			
  		
+>>>>>>> origin/master
 <div class="table-responsive">
         <table class="table  table-striped">
             <thead>
@@ -34,13 +39,22 @@
             <tr>
                     <td>{{ result.pk }}</td>
                     <td>{{ result.date }}</td>
+                    <td> 
+                        <button class="btn btn-primary actionViewResults" rel="tooltip" data-placement="top" title="Details" onclick="location.href='{% url 'results_detail' pk=result.pk %}'">
+                            <span class="glyphicon glyphicon-eye-open"></span>  
+                        </button>
+                    </td>
                     <td></td>
             </tr>
-            {% endfor %}
- 			</tbody>
+           {% endfor %}
+            </tbody>
         </table>         
     </div>
+<<<<<<< HEAD
+ <!-- Modal -->
+=======
 
+>>>>>>> origin/master
 
 {% endif %}
 {% endblock %}

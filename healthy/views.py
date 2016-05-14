@@ -39,11 +39,28 @@ class LabResultsPage(ListView):
 	template_name = 'healthy/labresults.html'
 	context_object_name = 'results'
 
+	
+	def get_queryset(self):
+		return Lab.objects.all()
+
+
+class LabResultsDetails(ListView):
+	model = LabResults
+	template_name = 'healthy/results_detail.html'
+	context_object_name = 'LabResults'
+
 	@method_decorator(login_required)
 	def dispach(self, *args, **kwargs):
-		return super(LabResultsPage, self).dispach(*args,**kwargs)
+		return super(LabResultsDetails, self).dispach(*args,**kwargs)
+
 
 	def get_queryset(self):
+<<<<<<< HEAD
+		return LabResults.objects.all()
+
+	#def get_object(self):
+	#	return get_object_or_404(LabResults, pk=self.kwargs.get("pk"))
+=======
 		return Lab.objects.all()
 
 
@@ -75,7 +92,7 @@ class AddLabPage(ListView):
 			
 			return redirect(self.success_url)
 	
-		return render(request, self.template_name, {'labresultsform': form})
+
 
 
 class AddLabResultsPage(ListView):
@@ -101,5 +118,3 @@ class AddLabResultsPage(ListView):
 			return redirect(self.success_url)
 	
 		return render(request, self.template_name, {'labresultsform': form})
-
-		

@@ -1,0 +1,33 @@
+{% extends 'healthy/base.html' %}
+{% load staticfiles %}
+{% block extra_js%} <script src="http://malsup.github.com/jquery.form.js"></script> {% endblock %} 
+
+
+  {% block content %}
+  {% if user.is_authenticated %}
+    <h1 class="sub-header">Lab Results <small>{{ user.username }} </small> </h1>
+         
+<div class="table-responsive">
+        <table class="table  table-striped">
+            <thead>
+                <tr>
+                    <th>Marker</th>
+                    <th>Value</th>
+                    <th>Min Value</th>
+                    <th>Max Value</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for result in LabResults %}
+           <tr>
+                    <td>{{ result.item_ref }}</td>
+					<td>{{ result.value }}</td>
+            </tr>
+           {% endfor %}
+            </tbody>
+        </table>         
+    </div>
+ <!-- Modal -->
+
+{% endif %}
+{% endblock %}
