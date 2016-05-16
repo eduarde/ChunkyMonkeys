@@ -128,7 +128,7 @@ class LabGeneral(models.Model):
 class LabResults(models.Model):
 	user_ref = models.ForeignKey('auth.User')
 	lab_ref = models.ForeignKey(Lab, related_name="Lab")
-	item_ref = models.ForeignKey(Item, related_name="Item", unique=True)
+	item_ref = models.ForeignKey(Item, related_name="Item")
 	general_ref = models.ForeignKey(LabGeneral,related_name="LabGeneral")
 	value = models.DecimalField('Value', default=0, max_digits=4, decimal_places=2, null=True)
 
