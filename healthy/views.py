@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 
-from .models import Lab, LabResults
+from .models import Lab, LabResults, LabGeneral
 from .forms import LabForm, LabResultsForm
 
 
@@ -109,6 +109,9 @@ class AddLabResultsPage(ListView):
 
 	def get_object(self):
 		return get_object_or_404(Lab, pk=self.kwargs.get("pk"))
+
+	def get_lab_general(self,item_name):
+	 	return LabGeneral.objects.get(item_ref__name=item_name)
 	
 	@method_decorator(login_required)
 	def post(self, request, *args, **kwargs):
@@ -117,6 +120,7 @@ class AddLabResultsPage(ListView):
 			self.object = form.save(commit=False)
 			self.object.user_ref = self.request.user
 			self.object.lab_ref = self.get_object()
+			self.object.general_ref = self.get_lab_general(self.object.item_ref.name)
 			self.object.save()
 			return redirect(self.success_url)
 	

@@ -115,19 +115,20 @@ class Item(models.Model):
 	um = models.CharField('Unit', max_length=10, blank=False, null=False, choices=UM_CHOICES,default=mm3)
 
 	def __str__(self):
-		return 'Item ' + self.name
+		return self.name
 
 class LabGeneral(models.Model):
 	threshold_min = models.DecimalField('Min Value', default=0, max_digits=4, decimal_places=2, null=True)
 	threshold_max = models.DecimalField('Max Value', default=0, max_digits=4, decimal_places=2, null=True)
 	item_ref = models.ForeignKey(Item,related_name="ItemGeneral")
+
 	def __str__(self):
-		return 'LabGeneral ' + self.item_ref.name
+		return self.item_ref.name
 
 class LabResults(models.Model):
 	user_ref = models.ForeignKey('auth.User')
 	lab_ref = models.ForeignKey(Lab, related_name="Lab")
-	item_ref = models.ForeignKey(Item, related_name="Item")
+	item_ref = models.ForeignKey(Item, related_name="Item", unique=True)
 	general_ref = models.ForeignKey(LabGeneral,related_name="LabGeneral")
 	value = models.DecimalField('Value', default=0, max_digits=4, decimal_places=2, null=True)
 

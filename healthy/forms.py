@@ -24,9 +24,8 @@ class LabResultsForm(forms.ModelForm):
 
 	class Meta:
 		model = LabResults
-		fields = ('item_ref','value','general_ref')
+		fields = ('item_ref','value',)
 		widgets = {
 			'item_ref' : forms.Select(attrs={'class': 'form-control'}),
-			'general_ref' : forms.Select(attrs={'class': 'form-control'}),
 			'value' : forms.NumberInput(attrs={'class': 'form-control'}),
         }
