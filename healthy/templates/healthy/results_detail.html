@@ -5,7 +5,7 @@
 
   {% block content %}
   {% if user.is_authenticated %}
-    <h1 class="sub-header">Lab Results <small>{{ user.username }} </small> </h1>
+    <h1 class="sub-header">Lab Results <small> {% with LabResults|first as first_result %} <strong>{{ first_result.lab_ref.pk  }} </strong> {{ first_result.lab_ref.date }}{% endwith %} </small></h1>
          
 <div class="table-responsive">
         <table class="table  table-striped">
