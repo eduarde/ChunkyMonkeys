@@ -30,6 +30,11 @@ class Lab(models.Model):
 				return True
 		return False
 
+	def user_age_lab(self):
+		born = UserProfile.objects.filter(user=self.user)[:1].get().dob
+		today = self.date
+		return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+
 	def __str__(self):
 		return 'Lab ' + str(self.pk)
 

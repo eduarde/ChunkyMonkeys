@@ -22,9 +22,11 @@
             <thead>
                 <tr>
                     <th>Lab</th>
+                    <th></th>
                     <th>Date</th>
                     <th>Patient</th>
-                    <th></th>
+                    <th>Age</th>
+                    
                     <th></th>
                 </tr>
             </thead>
@@ -32,9 +34,10 @@
              {% for result in results %}
             <tr>
                     <td>{{ result.pk }}</td>
+                    <td>{% if result.contains_abnormal_lab == True %} <span class="glyphicon glyphicon-warning-sign"> {% endif %}</td>
                     <td>{{ result.date }}</td>
                     <td>{{ result.user.last_name }} {{ result.user.first_name }}</td>
-                    <td>{% if result.contains_abnormal_lab == True %} <span class="glyphicon glyphicon-warning-sign"> {% endif %}</td>
+                    <td>{{ result.user_age_lab }}</td>
                     <td> 
                         <button class="btn btn-warning actionViewResults" rel="tooltip" data-placement="top" title="Details" onclick="location.href='{% url 'results_detail' pk=result.pk %}'">
                             <span class="glyphicon glyphicon-eye-open"></span>  
