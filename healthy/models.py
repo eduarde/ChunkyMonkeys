@@ -23,6 +23,13 @@ class Lab(models.Model):
 	user = models.ForeignKey('auth.User', verbose_name='User', null=True)
 	date = models.DateField('Date',blank=False, null=True)
 
+	def contains_abnormal_lab(self):
+		labResults = LabResults.objects.filter(lab_ref__pk=self.pk)
+		for labResult in labResults:
+			if labResult.is_abnormal() == True:
+				return True
+		return False
+
 	def __str__(self):
 		return 'Lab ' + str(self.pk)
 
@@ -52,7 +59,7 @@ class Item(models.Model):
 	FT4 = 'FT4'
 
 	NAME_CHOICES = (
-		(Leucocite,'Leucocite'),
+		(Leucocite,'Leucocite(WBC)'),
 		(Hematii,'Hematii(RBC)'),
 		(Hemoglobina,'Hemoglobina(HGB)'),
 		(VEM,'VEM(volum eritocitar mediu'),
@@ -128,9 +135,18 @@ class LabGeneral(models.Model):
 class LabResults(models.Model):
 	user_ref = models.ForeignKey('auth.User')
 	lab_ref = models.ForeignKey(Lab, related_name="Lab")
-	item_ref = models.ForeignKey(Item, related_name="Item")
+	item_ref = models.ForeignKey(Item, related_name="Item", verbose_name="Marker")
 	general_ref = models.ForeignKey(LabGeneral,related_name="LabGeneral")
 	value = models.DecimalField('Value', default=0, max_digits=4, decimal_places=2, null=True)
+
+	def is_abnormal(self):
+		if self.value < self.general_ref.threshold_min:
+			return True
+
+		if self.value > self.general_ref.threshold_max:
+			return True
+
+		return False 
 
 	def __str__(self):
 		return 'LabResult ' + str(self.lab_ref)

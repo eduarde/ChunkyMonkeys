@@ -5,8 +5,10 @@
 
   {% block content %}
   {% if user.is_authenticated %}
-    <h1 class="sub-header">Lab Results <small> {% with LabResults|first as first_result %} <strong>{{ first_result.lab_ref.pk  }} </strong> {{ first_result.lab_ref.date }}{% endwith %} </small></h1>
+    <h1 class="sub-header">Lab Results <small> {% with LabResults|first as first_result %} <strong>{{ first_result.lab_ref.pk  }} </strong> <span class="glyphicon glyphicon-circle-arrow-right"></span> {{ first_result.lab_ref.date }}{% endwith %} </small></h1>
          
+    <br /><br /><br />
+
 <div class="table-responsive">
         <table class="table  table-striped">
             <thead>
@@ -18,6 +20,7 @@
                     <th>Value</th>
                     <th>Min Value</th>
                     <th>Max Value</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +33,7 @@
 					           <td>{{ result.value }}</td>
                      <td>{{ result.general_ref.threshold_min }} </td>
                      <td>{{ result.general_ref.threshold_max }} </td>
-                     <td></td>
+                     <td>{% if result.is_abnormal == True %} <span class="glyphicon glyphicon-warning-sign"> {% endif %}</td>
 
             </tr>
            {% endfor %}

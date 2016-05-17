@@ -6,12 +6,12 @@
 
   {% block content %}
   {% if user.is_authenticated %}
-    <h1 class="sub-header">Labs  <small>{{ user.username }} </small> </h1>
+    <h1 class="sub-header">Labs  <small> <span class="glyphicon glyphicon-user" ></span> {{ user.last_name }} {{ user.first_name }}  </small> </h1>
  
  <br />
   
 <div class="btn-group" role="group" aria-label="...">
-        <a type="button" href="{% url 'addLab' %}" class="btn btn-danger actionAdd">Add</a>
+        <a type="button" href="{% url 'addLab' %}" class="btn btn-danger actionAdd" title="Add new lab">Add</a>
     </div>
     <br /> <br />
     <hr class="featurette-divider">
@@ -21,9 +21,10 @@
         <table class="table  table-striped">
             <thead>
                 <tr>
-    
                     <th>Lab</th>
                     <th>Date</th>
+                    <th>Patient</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -32,12 +33,14 @@
             <tr>
                     <td>{{ result.pk }}</td>
                     <td>{{ result.date }}</td>
+                    <td>{{ result.user.last_name }} {{ result.user.first_name }}</td>
+                    <td>{% if result.contains_abnormal_lab == True %} <span class="glyphicon glyphicon-warning-sign"> {% endif %}</td>
                     <td> 
-                        <button class="btn btn-primary actionViewResults" rel="tooltip" data-placement="top" title="Details" onclick="location.href='{% url 'results_detail' pk=result.pk %}'">
+                        <button class="btn btn-warning actionViewResults" rel="tooltip" data-placement="top" title="Details" onclick="location.href='{% url 'results_detail' pk=result.pk %}'">
                             <span class="glyphicon glyphicon-eye-open"></span>  
                         </button>
-                         <button class="btn btn-danger actionViewResults" rel="tooltip" data-placement="top" title="add" onclick="location.href='{% url 'addLabResults' pk=result.pk %}'">
-                            <span class="glyphicon glyphicon-plus"></span>  
+                         <button class="btn btn-danger actionViewResults" rel="tooltip" data-placement="top" title="Add a result" onclick="location.href='{% url 'addLabResults' pk=result.pk %}'">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  
                         </button>
                     </td>
                     <td></td>
