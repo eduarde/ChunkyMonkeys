@@ -32,5 +32,20 @@ Hackathon project
 6. Run: python manage.py migrate 
 
 7. Create super administrator: python manage.py  createsuperuser
-8. Start server: python manage.py runserver
-9. Test the application:  http://127.0.0.1:8000/
+
+8. Run: python manage.py makemigrations healthy
+
+9. Run: python manage.py migrate healthy
+
+10. Start server: python manage.py runserver
+
+11. Navigate to the administration page:  http://127.0.0.1:8000/admin
+
+12. Add users
+
+13. Add Items (markers) 
+
+14. Add Lab general for all items (min value & max value) 
+
+15. Test the application:  http://127.0.0.1:8000/
+
