@@ -1,0 +1,24 @@
+{% extends 'healthy/base.html' %}
+{% load staticfiles %}
+
+{% block extra_js%}
+<script src="http://malsup.github.com/jquery.form.js"></script>
+{% endblock %}
+
+ {% block content %}
+  {% if user.is_authenticated %}
+    <h1 class="sub-header">Add lab details<small> </h1>
+
+ <form method="POST">{% csrf_token %}
+	     {{ form.media }}
+	    <div class="row">
+          	<div class="col-md-6">
+				{{ labdetailform.as_table }}
+	        </div>
+	     </div>
+	     <br /><br />
+	     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		 <button type="submit" class="btn btn-danger">Save changes</button>
+</form>
+{% endif %}
+{% endblock %}

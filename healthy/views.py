@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, ListView
+from django.views.generic import View, ListView, DetailView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 
-from .models import Lab, LabResults, LabGeneral
-from .forms import LabForm, LabResultsForm
+from .models import Lab, LabResults, LabGeneral, LabDetail
+from .forms import LabForm, LabResultsForm, LabDetailForm
 
 
 @login_required
@@ -132,3 +132,39 @@ class ChartsPage(View):
 
 	def get(self, request):
 		return render(request, self.template_name)
+
+class LabDetailPage(ListView):
+	template_name = 'healthy/lab_detail.html'
+
+	@method_decorator(login_required)
+	def get(self, request, *args, **kwargs):
+		self.object = self.get_object()
+		return render(request, self.template_name, {'labdetail': self.object})
+
+	def get_object(self):
+		return get_object_or_404(LabDetail, lab_ref__pk=self.kwargs.get("pk"))
+
+class AddLabDetailPage(ListView):
+	model = LabDetail
+	template_name = 'healthy/addLabDetail.html'
+	success_url = '/labresults';
+	form_class = LabDetailForm
+
+	def get_object(self):
+		return get_object_or_404(Lab, pk=self.kwargs.get("pk")) 	
+
+	@method_decorator(login_required)
+	def get(self, request, *args, **kwargs):
+		form = self.form_class()
+		return render(request, self.template_name, {'labdetailform': form})
+
+	@method_decorator(login_required)	
+	def post(self, request, *args, **kwargs):
+		form = self.form_class(request.POST)	
+		if form.is_valid():
+			self.object = form.save(commit=False)
+			self.object.lab_ref = self.get_object()
+			self.object.save()
+			return redirect(self.success_url)
+
+		return render(request, self.template_name, {'labdetailform': form})

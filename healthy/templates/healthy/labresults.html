@@ -45,6 +45,12 @@
                          <button class="btn btn-danger actionViewResults" rel="tooltip" data-placement="top" title="Add a result" onclick="location.href='{% url 'addLabResults' pk=result.pk %}'">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  
                         </button>
+                        <button class="btn btn-info" rel="tooltip" data-placement="top" title="Add details" onclick="location.href='{% url 'add_lab_detail' pk=result.pk %}'">
+                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>  
+                        </button>
+                        <button class="btn btn-success" rel="tooltip" data-placement="top" title="See detail" onclick="location.href='{% url 'lab_detail' pk=result.pk %}'">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  
+                        </button>
                     </td>
                     <td></td>
             </tr>

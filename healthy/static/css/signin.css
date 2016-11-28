@@ -1,11 +1,25 @@
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #1e1e1e;
+html,body {
+  margin: 0px;
+  left: 0px;
+  top: 0px;
+  right:0px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: #F05F40;
+}
+
+#content {
+  left: 0;
 }
 
 .form-signin {
-  max-width: 330px;
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  text-align: center;
+  color: white;
+  max-width: 430px;
   padding: 15px;
   margin: 0 auto;
 }

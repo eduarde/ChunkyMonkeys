@@ -156,5 +156,16 @@ class LabResults(models.Model):
 	def __str__(self):
 		return 'LabResult ' + str(self.lab_ref)
 
+class LabDetail(models.Model):
+
+	lab_ref = models.ForeignKey(Lab, related_name="LabDet")
+	reason = models.TextField('Reason', blank=True, null=True)
+	cause = models.TextField('Cause', blank=True, null=True)
+	action = models.TextField('Action', blank=True, null=True)
+
+	def __str__(self):
+		return 'LabDetail ' + str(self.lab_ref)
+
+
 
 

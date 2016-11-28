@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from .views import LandingPage, HomePage, TestPage, LabResultsPage, ProfilePage, AddLabResultsPage,AddLabPage, LabResultsDetails, ChartsPage
+from .views import AddLabDetailPage, LabDetailPage, LandingPage, HomePage, TestPage, LabResultsPage, ProfilePage, AddLabResultsPage,AddLabPage, LabResultsDetails, ChartsPage
 
 urlpatterns = [
 
@@ -15,5 +15,9 @@ urlpatterns = [
     url(r'^profile/$', ProfilePage.as_view(), name='profile'),
     url(r'^addLab/$', AddLabPage.as_view(), name='addLab'),
     url(r'^addLabResults/(?P<pk>\d+)$', AddLabResultsPage.as_view(), name='addLabResults'),
+
+    url(r'^addlabdetail/(?P<pk>\d+)$', AddLabDetailPage.as_view(), name='add_lab_detail'),
+    url(r'^labdetail/(?P<pk>\d+)$', LabDetailPage.as_view(), name='lab_detail'),
+
 
 ]
