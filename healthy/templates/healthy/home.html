@@ -4,29 +4,57 @@
 
 	{% block content %}
   {% if user.is_authenticated %}
-	<h1 class="sub-header">Home</h1>
+
+  <div role="main" class="container">
+    <section id="dashboard">
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="{% url 'charts' %}"> <i class="fa fa-4x fa-pie-chart text-primary sr-icons"></i>
+                        <h3>Visualize trends</h3> </a>
+                        <p class="text-muted">Generate graphs to see trends.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="#share"> <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+                        <h3>Share Results </h3> </a>
+                        <p class="text-muted">You can share your results with the beloved ones!</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                         <a href="{% url 'results' %}"> <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+                        <h3>Lab Results</h3></a>
+                        <p class="text-muted">Add and Vizualize your Lab Results.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="{% url 'profile' %}"><i class="fa fa-4x fa-user text-primary sr-icons"></i>
+                        <h3>Profile</h3></a>
+                        <p class="text-muted">Check your profile.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  </div>  
+  <br />
+
+  <hr><br />
+  <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>HOME</h2>
+                <a href="#about" class="btn btn-default btn-xl sr-button page-scroll">Back to top</a>
+            </div>
+        </div>
+    </aside>
 	
-  <div id="dashboard" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-          
-          <br /> <br />
-          <br /> <br />
-          <br /> <br />
+  
 
-          <div class="row placeholders">
-            <div id="bubble" class="col-sm-6 col-md-6 placeholder">
-              <a href="{% url 'charts' %}">  <img src="{% static 'img/statistics.png' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"></a>
-              <h4>Charts</h4>
-               <span class="text-muted">Track your health.</span> 
-            </div>
-            <div id="bubble" class="col-sm-6 col-md-6 placeholder">
-              <a href="{% url 'results' %}"> <img src="{% static 'img/lab.png' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"></a>
-              <h4>Lab Results</h4>
-                <span class="text-muted">View and Add your Lab Results.</span>  
-            </div>
-
-            
-            
-          </div>
-</div>
 {% endif %}
 {% endblock %}

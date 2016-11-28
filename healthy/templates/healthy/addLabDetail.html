@@ -7,18 +7,35 @@
 
  {% block content %}
   {% if user.is_authenticated %}
-    <h1 class="sub-header">Add lab details<small> </h1>
+  
+   <div role="main" class="container">
 
- <form method="POST">{% csrf_token %}
-	     {{ form.media }}
-	    <div class="row">
-          	<div class="col-md-6">
-				{{ labdetailform.as_table }}
-	        </div>
-	     </div>
-	     <br /><br />
-	     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		 <button type="submit" class="btn btn-danger">Save changes</button>
-</form>
+   		<br ><br >
+
+   		
+
+		 <form method="POST">{% csrf_token %}
+			     {{ form.media }}
+			    <div class="row">
+		          	<div class="col-md-6">
+						{{ labdetailform.as_table }}
+			        </div>
+			     </div>
+			     <br /><br />
+			     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				 <button type="submit" class="btn btn-danger">Save changes</button>
+		</form>
+
+	</div>
+
+	<hr><br />
+  <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>ADD LAB DETAILS</h2>
+                <a href="#about" class="btn btn-default btn-xl sr-button page-scroll">Back to top</a>
+            </div>
+        </div>
+    </aside>
 {% endif %}
 {% endblock %}

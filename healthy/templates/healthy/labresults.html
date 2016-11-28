@@ -6,58 +6,70 @@
 
   {% block content %}
   {% if user.is_authenticated %}
-    <h1 class="sub-header">Labs  <small> <span class="glyphicon glyphicon-user" ></span> {{ user.last_name }} {{ user.first_name }}  </small> </h1>
- 
- <br />
-  
-<div class="btn-group" role="group" aria-label="...">
-        <a type="button" href="{% url 'addLab' %}" class="btn btn-danger actionAdd" title="Add new lab">Add</a>
-    </div>
-    <br /> <br />
-    <hr class="featurette-divider">
+   
+    <div role="main" class="container"> 
  			
+        <br ><br >
  		
-<div class="table-responsive">
-        <table class="table  table-striped">
-            <thead>
+        <div class="table-responsive">
+            <table class="table  table-striped">
+                <thead>
+                    <tr>
+                        <th>Lab</th>
+                        <th></th>
+                        <th>Date</th>
+                        <th>Patient</th>
+                        <th>Age</th>
+                        
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                 {% for result in results %}
                 <tr>
-                    <th>Lab</th>
-                    <th></th>
-                    <th>Date</th>
-                    <th>Patient</th>
-                    <th>Age</th>
-                    
-                    <th></th>
+                        <td>{{ result.pk }}</td>
+                        <td>{% if result.contains_abnormal_lab == True %} <span class="glyphicon glyphicon-warning-sign"> {% endif %}</td>
+                        <td>{{ result.date }}</td>
+                        <td>{{ result.user.last_name }} {{ result.user.first_name }}</td>
+                        <td>{{ result.user_age_lab }}</td>
+                        <td> 
+                            <button class="btn btn-warning actionViewResults" rel="tooltip" data-placement="top" title="Details" onclick="location.href='{% url 'results_detail' pk=result.pk %}'">
+                                <span class="glyphicon glyphicon-eye-open"></span>  
+                            </button>
+                             <button class="btn btn-danger actionViewResults" rel="tooltip" data-placement="top" title="Add a result" onclick="location.href='{% url 'addLabResults' pk=result.pk %}'">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  
+                            </button>
+                           <!--  <button class="btn btn-info" rel="tooltip" data-placement="top" title="Add details" onclick="location.href='{% url 'add_lab_detail' pk=result.pk %}'">
+                                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>  
+                            </button>
+                            <button class="btn btn-success" rel="tooltip" data-placement="top" title="See detail" onclick="location.href='{% url 'lab_detail' pk=result.pk %}'">
+                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  
+                            </button> -->
+                        </td>
+                        <td></td>
                 </tr>
-            </thead>
-            <tbody>
-             {% for result in results %}
-            <tr>
-                    <td>{{ result.pk }}</td>
-                    <td>{% if result.contains_abnormal_lab == True %} <span class="glyphicon glyphicon-warning-sign"> {% endif %}</td>
-                    <td>{{ result.date }}</td>
-                    <td>{{ result.user.last_name }} {{ result.user.first_name }}</td>
-                    <td>{{ result.user_age_lab }}</td>
-                    <td> 
-                        <button class="btn btn-warning actionViewResults" rel="tooltip" data-placement="top" title="Details" onclick="location.href='{% url 'results_detail' pk=result.pk %}'">
-                            <span class="glyphicon glyphicon-eye-open"></span>  
-                        </button>
-                         <button class="btn btn-danger actionViewResults" rel="tooltip" data-placement="top" title="Add a result" onclick="location.href='{% url 'addLabResults' pk=result.pk %}'">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  
-                        </button>
-                        <button class="btn btn-info" rel="tooltip" data-placement="top" title="Add details" onclick="location.href='{% url 'add_lab_detail' pk=result.pk %}'">
-                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>  
-                        </button>
-                        <button class="btn btn-success" rel="tooltip" data-placement="top" title="See detail" onclick="location.href='{% url 'lab_detail' pk=result.pk %}'">
-                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  
-                        </button>
-                    </td>
-                    <td></td>
-            </tr>
-           {% endfor %}
-            </tbody>
-        </table>         
+               {% endfor %}
+                </tbody>
+            </table>         
+        </div>
+
+       <br >
+        <div class="btn-group" role="group" aria-label="...">
+            <a type="button" href="{% url 'addLab' %}" class="btn btn-danger actionAdd" title="Add new lab">ADD NEW RESULT</a>
+        </div>
+
     </div>
+
+
+    <hr><br />
+    <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>LAB RESULTS</h2>
+                <a href="#about" class="btn btn-default btn-xl sr-button page-scroll">Back to top</a>
+            </div>
+        </div>
+    </aside>
 
 {% endif %}
 {% endblock %}

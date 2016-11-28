@@ -7,21 +7,34 @@
 
  {% block content %}
   {% if user.is_authenticated %}
-  <h1 class="sub-header">Add lab<small> </h1>
+  
+  	 <div role="main" class="container">
 
+  	 	<br ><br ><br >  
 
- <form method="POST" class="proiect-form">{% csrf_token %}
-	     {{ form.media }}
-	    <div class="row">
-          	<div class="col-md-6">
-				{{ labresultsform.as_p }}
+		 <form method="POST" class="proiect-form">{% csrf_token %}
+			     {{ form.media }}
+			    <div class="row">
+		          	<div class="col-md-6">
+						{{ labresultsform.as_p }}
+			        </div>
+			     </div>
+			     <br />
+			     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        <button type="submit" class="btn btn-danger">Save changes</button>
+		</form>
+	</div>
+	<br ><br >  
+
+	 <hr><br />
+	  <aside class="bg-dark">
+	        <div class="container text-center">
+	            <div class="call-to-action">
+	                <h2>ADD A NEW LAB RESULT</h2>
+	                <a href="#about" class="btn btn-default btn-xl sr-button page-scroll">Back to top</a>
+	            </div>
 	        </div>
-	     </div>
-	     <br />
-	     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="submit" class="btn btn-danger">Save changes</button>
-</form>
-
+	    </aside>
 
 <script>
     $(document).ready(function(){

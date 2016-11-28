@@ -5,42 +5,70 @@
 
   {% block content %}
   {% if user.is_authenticated %}
-    <h1 class="sub-header">Lab Results <small> {% with LabResults|first as first_result %} <strong>{{ first_result.lab_ref.pk  }} </strong> <span class="glyphicon glyphicon-circle-arrow-right"></span> {{ first_result.lab_ref.date }}{% endwith %} </small></h1>
-         
-    <br /><br /><br />
 
-<div class="table-responsive">
-        <table class="table  table-striped">
-            <thead>
-                <tr>
-                    <th>Marker</th>
-                    <th>Category</th>
-                    <th>Abbreviation</th>
-                    <th>UM</th>
-                    <th>Value</th>
-                    <th>Min Value</th>
-                    <th>Max Value</th>
-                    <th></th>
+    <div role="main" class="container">
+
+        <section id="title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                        <h2 class="section-heading"><small>Lab Result </small> {% with LabResults|first as first_result %} {{ first_result.lab_ref.pk  }} 
+                        <i class="fa fa-calendar fa-2x sr-contact"></i> <small>{{ first_result.lab_ref.date }} </small>{% endwith %} </h2>
+                        <hr class="primary">
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <br >
+
+        <div class="table-responsive">
+            <table class="table  table-striped">
+                <thead>
+                    <tr>
+                        <th>Marker</th>
+                        <th>Category</th>
+                        <th>Abbreviation</th>
+                        <th>UM</th>
+                        <th>Value</th>
+                        <th>Min Value</th>
+                        <th>Max Value</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for result in LabResults %}
+               <tr>
+                         <td>{{ result.item_ref.name }}</td>
+                         <td>{{ result.item_ref.category }}</td>
+                         <td>{{ result.item_ref.abbr }}</td>
+                         <td>{{ result.item_ref.um }}</td>
+    					           <td>{{ result.value }}</td>
+                         <td>{{ result.general_ref.threshold_min }} </td>
+                         <td>{{ result.general_ref.threshold_max }} </td>
+                         <td>{% if result.is_abnormal == True %} <span class="glyphicon glyphicon-warning-sign"> {% endif %}</td>
+
                 </tr>
-            </thead>
-            <tbody>
-              {% for result in LabResults %}
-           <tr>
-                     <td>{{ result.item_ref.name }}</td>
-                     <td>{{ result.item_ref.category }}</td>
-                     <td>{{ result.item_ref.abbr }}</td>
-                     <td>{{ result.item_ref.um }}</td>
-					           <td>{{ result.value }}</td>
-                     <td>{{ result.general_ref.threshold_min }} </td>
-                     <td>{{ result.general_ref.threshold_max }} </td>
-                     <td>{% if result.is_abnormal == True %} <span class="glyphicon glyphicon-warning-sign"> {% endif %}</td>
-
-            </tr>
-           {% endfor %}
-            </tbody>
-        </table>         
-    </div>
+               {% endfor %}
+                </tbody>
+            </table>         
+        </div>
  <!-- Modal -->
 
+</div>
+
+    <br ><br >
+
+    <hr><br />
+      <aside class="bg-dark">
+            <div class="container text-center">
+                <div class="call-to-action">
+                    <h2>LAB RESULT DETAILS</h2>
+                    <a href="#about" class="btn btn-default btn-xl sr-button page-scroll">Back to top</a>
+                </div>
+            </div>
+        </aside>
 {% endif %}
 {% endblock %}

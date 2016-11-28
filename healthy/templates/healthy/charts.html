@@ -4,13 +4,25 @@
 
   {% block content %}
   {% if user.is_authenticated %}
-	<h1 class="sub-header">Charts</h1>
+
+  <div role="main" class="container">
 
  	<h1 class="sub-header"><small>Leucocite</small></h1>
  	<br /><br />
 
-    <canvas id="myChart"></canvas>
+  <canvas id="myChart"></canvas>
 
+  </div>
+
+  <hr><br />
+  <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>TRENDS</h2>
+                <a href="#about" class="btn btn-default btn-xl sr-button page-scroll">Back to top</a>
+            </div>
+        </div>
+    </aside>
     
   <!-- Compiled and minified jQuery 2.1.3 -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
