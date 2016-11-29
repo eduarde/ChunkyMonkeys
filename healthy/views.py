@@ -47,7 +47,7 @@ class LabResultsPage(ListView):
 
 	
 	def get_queryset(self):
-		return Lab.objects.all().filter(user=self.request.user)
+		return Lab.objects.all().filter(user=self.request.user).order_by('-pk')
 
 
 class LabResultsDetails(ListView):
