@@ -1,20 +1,39 @@
 {% extends 'healthy/base.html' %}
 {% load staticfiles %}
-
+{% load gravatar %}
 
   {% block content %}
-  {% if user.is_authenticated %}
-    <h1 class="sub-header">Profile</small> </h1>
+   <div role="main" class="container">
+
+   		<br /><br />
+   		<div class="row">
+  			<div class="col-sm-6 col-md-4">
+    			<div class="thumbnail">
+      				{% gravatar user.email 400 %}
+      				<div class="caption">
+	        			<h3 class="text-primary">{{ user.first_name }} {{ user.last_name }}</h3>
+      				</div>
+    			</div>
+ 			</div>
+		</div>
+
  
- <br />
-  
-  {{ user.username}}
+   </div>
 
-  {{ user.last_name }}
-
-  <small>TODO: aici adaugam un buton pentru a salva date precum dob, gender </small> 
+   <hr><br />
+  	<aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>PROFILE</h2>
+                <a href="#about" class="btn btn-default btn-xl sr-button page-scroll">Back to top</a>
+            </div>
+        </div>
+    </aside>
+   
+ 
+ 
 
  	
 
-{% endif %}
+
 {% endblock %}

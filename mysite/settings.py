@@ -26,6 +26,7 @@ SECRET_KEY = 'mwxz5q(6fdmt(!!8sj1^x$st6(=psqjz_ah6qet7(+zrqm%66z'
 DEBUG = False
 
 ALLOWED_HOSTS = ['healthy.pythonanywhere.com']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -39,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'healthy',
     'widget_tweaks',
-    'datetimewidget'
+    'datetimewidget',
+    'django_gravatar',
 ]
 
 MIDDLEWARE_CLASSES = [

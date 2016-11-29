@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.utils.timezone import now
 from datetime import date, timedelta
 
+
 class UserProfile(models.Model):
 	F = 'F'
 	M = 'M'
@@ -12,9 +13,24 @@ class UserProfile(models.Model):
 		(M, 'M'),
 	)
 
+	N  = 'N'
+	A  = 'Group A'
+	B  = 'Group B'
+	AB = 'Group AB'
+	O  = 'Group 0'	
+
+	BLOOD_TYPES = (
+		(A, 'Group A'),
+		(B, 'Group B'),
+		(AB, 'Group AB'),
+		(O, 'Group 0'),
+		(N, 'N'),
+	)
+
 	user = models.ForeignKey('auth.User', unique=True)
 	gender = models.CharField(max_length=5, choices=GENDER_CHOICES, default=F)
 	dob = models.DateField('Date of birth',null=True)
+	blood_type = models.CharField(max_length=5, choices=BLOOD_TYPES, default=N)
 
 	def __str__(self):
 		return 'UserProfile ' + self.user.username
