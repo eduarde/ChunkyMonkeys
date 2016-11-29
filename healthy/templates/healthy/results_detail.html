@@ -7,21 +7,43 @@
   {% if user.is_authenticated %}
 
     <div role="main" class="container">
-
-        <section id="title">
+        <br /> <br />
+        <div id="title">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 text-center">
-                        <h2 class="section-heading"><small>Lab Result </small> {% with LabResults|first as first_result %} {{ first_result.lab_ref.pk  }} 
-                        <i class="fa fa-calendar fa-2x sr-contact"></i> <small>{{ first_result.lab_ref.date }} </small>{% endwith %} </h2>
+                        <h2 class="section-heading"><small>Lab Result </small> {{ lab.ref_number  }} 
+                        <i class="fa fa-calendar fa-2x sr-contact"></i> <small>{{ lab.date }} </small></h2>
+                        <br />
                         <hr class="primary">
-                        
                     </div>
-                    
                 </div>
             </div>
-        </section>
+        </div>
 
+        <div class="container">
+               <div class="row">
+                    <h4>
+                        <div class="col-md-4"><strong>First Name</strong> {{ lab.user.first_name }}</div>
+                        <div class="col-md-4"><strong>Last Name</strong> {{ lab.user.last_name }}</div>
+                        <div class="col-md-4"><strong>Age</strong> {{ lab.user_age_lab }}</div>
+                    </h4>
+                </div>
+
+                <div class="row">
+                    <h4>
+                        <div class="col-md-4"><strong>Patient Code</strong> {{ lab.patient_code }}</div>
+                        <div class="col-md-4"><strong>Doctor</strong> {{ lab.doctor }}</div>
+                        <div class="col-md-4"><strong>Collection Point</strong> {{ lab.collection_point }}</div>
+                    </h4>
+                </div>
+            
+        </div>
+
+        <br />
+
+        <br >
+        <hr>
         <br >
 
         <div class="table-responsive">
@@ -55,11 +77,17 @@
                 </tbody>
             </table>         
         </div>
+         <br /> <br />
+       
+        <button class="btn btn-danger actionViewResults" rel="tooltip" data-placement="top" title="Add a result" onclick="location.href='{% url 'addLabResults' pk=lab.pk %}'">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Add marker
+        </button>
+     
  <!-- Modal -->
 
 </div>
 
-    <br ><br >
+    <br ><br >  
 
     <hr><br />
       <aside class="bg-dark">

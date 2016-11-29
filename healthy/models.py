@@ -22,6 +22,10 @@ class UserProfile(models.Model):
 class Lab(models.Model):
 	user = models.ForeignKey('auth.User', verbose_name='User', null=True)
 	date = models.DateField('Date',blank=False, null=True)
+	ref_number = models.IntegerField('Reference Number', blank=False,null=False)
+	doctor = models.CharField('Doctor', max_length=300, blank=True, null=True)
+	collection_point = models.CharField('Collection point', max_length=500, blank=True, null=True)
+	patient_code = models.IntegerField('Patient Code', blank=False,null=True)
 
 	def contains_abnormal_lab(self):
 		labResults = LabResults.objects.filter(lab_ref__pk=self.pk)
@@ -36,7 +40,7 @@ class Lab(models.Model):
 		return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 	def __str__(self):
-		return 'Lab ' + str(self.pk)
+		return 'Lab ' + str(self.ref_number)
 
 class Item(models.Model):
 
@@ -130,8 +134,8 @@ class Item(models.Model):
 		return self.name
 
 class LabGeneral(models.Model):
-	threshold_min = models.DecimalField('Min Value', default=0, max_digits=4, decimal_places=2, null=True)
-	threshold_max = models.DecimalField('Max Value', default=0, max_digits=4, decimal_places=2, null=True)
+	threshold_min = models.DecimalField('Min Value', default=0, max_digits=10, decimal_places=3, null=True)
+	threshold_max = models.DecimalField('Max Value', default=0, max_digits=10, decimal_places=3, null=True)
 	item_ref = models.ForeignKey(Item,related_name="ItemGeneral")
 
 	def __str__(self):
@@ -142,7 +146,7 @@ class LabResults(models.Model):
 	lab_ref = models.ForeignKey(Lab, related_name="Lab")
 	item_ref = models.ForeignKey(Item, related_name="Item", verbose_name="Marker")
 	general_ref = models.ForeignKey(LabGeneral,related_name="LabGeneral")
-	value = models.DecimalField('Value', default=0, max_digits=4, decimal_places=2, null=True)
+	value = models.DecimalField('Value', default=0, max_digits=10, decimal_places=3, null=True)
 
 	def is_abnormal(self):
 		if self.value < self.general_ref.threshold_min:
@@ -156,15 +160,6 @@ class LabResults(models.Model):
 	def __str__(self):
 		return 'LabResult ' + str(self.lab_ref)
 
-class LabDetail(models.Model):
-
-	lab_ref = models.ForeignKey(Lab, related_name="LabDet")
-	reason = models.TextField('Reason', blank=True, null=True)
-	cause = models.TextField('Cause', blank=True, null=True)
-	action = models.TextField('Action', blank=True, null=True)
-
-	def __str__(self):
-		return 'LabDetail ' + str(self.lab_ref)
 
 
 

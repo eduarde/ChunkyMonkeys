@@ -10,49 +10,38 @@
     <div role="main" class="container"> 
  			
         <br ><br >
- 		
-        <div class="table-responsive">
-            <table class="table  table-striped">
-                <thead>
-                    <tr>
-                        <th>LAB</th>
-                        <th></th>
-                        <th>DATE</th>
-                        <th>AGE</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                 {% for result in results %}
-                <tr>
-                        <td>{{ result.pk }}</td>
-                        <td>{% if result.contains_abnormal_lab == True %} <span class="glyphicon glyphicon-warning-sign"> {% endif %}</td>
-                        <td>{{ result.date }}</td>
-                        <td>{{ result.user_age_lab }}</td>
-                        <td> 
-                            <button class="btn btn-warning actionViewResults" rel="tooltip" data-placement="top" title="Details" onclick="location.href='{% url 'results_detail' pk=result.pk %}'">
-                                <span class="glyphicon glyphicon-eye-open"></span>  
-                            </button>
-                             <button class="btn btn-danger actionViewResults" rel="tooltip" data-placement="top" title="Add a result" onclick="location.href='{% url 'addLabResults' pk=result.pk %}'">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  
-                            </button>
-                           <!--  <button class="btn btn-info" rel="tooltip" data-placement="top" title="Add details" onclick="location.href='{% url 'add_lab_detail' pk=result.pk %}'">
-                                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>  
-                            </button>
-                            <button class="btn btn-success" rel="tooltip" data-placement="top" title="See detail" onclick="location.href='{% url 'lab_detail' pk=result.pk %}'">
-                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  
-                            </button> -->
-                        </td>
-                        <td></td>
-                </tr>
-               {% endfor %}
-                </tbody>
-            </table>         
+        <div class="btn-group" role="group" aria-label="...">
+            <a type="button" href="{% url 'addLab' %}" class="btn btn-danger actionAdd" title="Add new lab">  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD NEW RESULT</a>
         </div>
+         <br ><br >
 
+        <div class="list-group">
+            {% for result in results %}
+            <a href="{% url 'results_detail' pk=result.pk %}" class="list-group-item default">
+                <h4 class="list-group-item-heading">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4"><i class="fa fa-heartbeat fa-1x text-primary sr-contact"></i> {{ result.ref_number }}</div>
+                            <div class="col-md-4"><i class="fa fa-calendar fa-1x sr-contact"></i> {{ result.date }}</div>
+                            <div class="col-md-4">{% if result.contains_abnormal_lab == True %} <span class="glyphicon glyphicon-warning-sign text-primary"></span> {% endif %}</div>
+                        </div>
+                        <hr>
+                        <p class="list-group-item-text">
+                            <div class="row">
+                                <div class="col-md-4"><strong>Age </strong> {{ result.user_age_lab }}</div>
+                                <div class="col-md-4"><strong>Doctor </strong> {{ result.doctor }}</div>
+                                <div class="col-md-4"><strong>Collection point </strong> {{ result.collection_point }}</div>
+                            </div>
+                        </p>
+                    </div>
+                </h4>
+            </a>
+            {% endfor %}
+        </div>
+ 	
        <br >
         <div class="btn-group" role="group" aria-label="...">
-            <a type="button" href="{% url 'addLab' %}" class="btn btn-danger actionAdd" title="Add new lab">ADD NEW RESULT</a>
+            <a type="button" href="{% url 'addLab' %}" class="btn btn-danger actionAdd" title="Add new lab">  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD NEW RESULT</a>
         </div>
 
     </div>
