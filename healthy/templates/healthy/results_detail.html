@@ -95,40 +95,15 @@
 
         <hr>
 
-       <!--  <div class="well well-lg">
-            {% for note in notes %}
+       {% for note in notes %}
+        <div class="well well-lg">
+          
             <p>{{note.comment}}</p>
-            {% endfor %}
-        </div> -->
+            
+        </div> 
+        {% endfor %} 
 
-        <br />
-        <div class="comments">
 
-        <div class="comment-wrap">
-            <div class="photo">
-                        <div class="avatar" style="background-image: url('{% gravatar_url user.email %}')"></div>
-                </div>
-                <div class="comment-block">
-                        <form action="">
-                                <textarea name="" id="" cols="30" rows="3" placeholder="Add comment..."></textarea>
-                        </form>
-                </div>
-        </div>    
-
-        {% for note in notes %}    
-        <div class="comment-wrap">
-                <div class="photo">
-                        <div class="avatar" style="background-image: url('{% gravatar_url user.email %}')"></div>
-                </div>
-                <div class="comment-block">
-                        <p class="comment-text">{{note.comment}}</p>
-                        <div class="bottom-comment">
-                                <div class="comment-date">{{note.pub_date}}</div>   
-                        </div>
-                </div>
-        </div>
-        {% endfor %}
-</div>
 
 </div>
 

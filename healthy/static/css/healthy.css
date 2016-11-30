@@ -1,4 +1,4 @@
-html,
+/*html,
 body {
   background-color: #f0f2fa;
   font-family: "PT Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
@@ -66,7 +66,7 @@ p {
 
 .comment-block {
   padding: 1rem;
-  background-color: #fff;
+  background-color: #f0f2fa;
   display: table-cell;
   vertical-align: top;
   border-radius: 0.1875rem;
@@ -112,4 +112,4 @@ p {
 
 .viewDictionary {
   padding: 1em;
-}
+}*/
