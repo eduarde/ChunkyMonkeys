@@ -6,3 +6,7 @@ body {
 body.modal-open {
     overflow: auto;
 }
+
+.viewDictionary {
+	padding: 1em;
+}

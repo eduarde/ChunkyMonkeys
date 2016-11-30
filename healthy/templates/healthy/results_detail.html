@@ -66,7 +66,7 @@
                 <tbody>
                   {% for result in LabResults %}
                <tr>
-                         <td><a class="viewDictionary" rel="tooltip" data-placement="top"  title="Details" data-toggle="modal" id="close" data-target="#modal" href="{% url 'dictionary_item' pk=result.item_ref.pk %}"><i class="fa fa-book fa-1x sr-contact text-primary"></i></a></td>
+                         <td><a class="viewDictionary" rel="tooltip" data-placement="top"  title="Details" data-toggle="modal" id="close" data-target="#modal" href="{% url 'dictionary_item' pk=result.item_ref.pk %}"><i class="fa fa-book fa-1x  text-primary" aria-hidden="true"></i></a></td>
                          <td>{{ result.item_ref.name }}</td>
                          <td>{{ result.item_ref.category }}</td>
                          <td>{{ result.item_ref.abbr }}</td>
