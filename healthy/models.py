@@ -184,14 +184,6 @@ class LabResults(models.Model):
 	def __str__(self):
 		return 'LabResult ' + str(self.lab_ref)
 
-class LabNotes(models.Model):
-	lab_ref = models.ForeignKey(Lab, related_name="LabNoteRef")
-	comment = models.TextField('Comment')
-	pub_date = models.DateTimeField('date published')
-
-	def __str__(self):
-		return "Note " + str(self.pk) + " " + str(self.lab_ref.ref_number)
-
 
 
 

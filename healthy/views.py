@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 
 
-from .models import Lab, LabResults, LabGeneral, Dictionary, Item, LabNotes
+from .models import Lab, LabResults, LabGeneral, Dictionary, Item
 from .forms import LabForm, LabResultsForm
 
 
@@ -51,13 +51,9 @@ class LabResultsDetails(ListView):
 	def get_lab(self):
 		return get_object_or_404(Lab, pk=self.kwargs.get("pk"))	
 
-	def get_notes(self):
-		return LabNotes.objects.all().filter(lab_ref=self.get_lab()).order_by('-pub_date')
-
 	def get_context_data(self, **kwargs):
 		context = super(LabResultsDetails, self).get_context_data(**kwargs)
 		context['lab'] = self.get_lab()
-		context['notes'] = self.get_notes()
 		return context
 
 	def get_queryset(self):
