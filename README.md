@@ -28,6 +28,8 @@ Hackathon project
     Widget Tweaks: pip install django-widget-tweaks
     
     DatetimeWidget: pip install django-datetime-widget
+
+    Gravatar: pip install django_gravatar2
     
 6. Run: python manage.py migrate 
 

@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 
 
-from .models import Lab, LabResults, LabGeneral
+from .models import Lab, LabResults, LabGeneral, Dictionary, Item
 from .forms import LabForm, LabResultsForm
 
 
@@ -28,19 +28,6 @@ class HomePage(View):
 	@method_decorator(login_required)
 	def get(self, request):
 		return render(request, self.template_name)
-
-
-class TestPage(ListView):
-	model = Lab
-	template_name = 'healthy/test.html'
-	context_object_name = 'labs'
-
-	@method_decorator(login_required)
-	def dispatch(self, *args, **kwargs):
-		return super(TestPage, self).dispatch(*args, **kwargs)
-	
-	def get_queryset(self):
-		return Lab.objects.all()
 
 class LabResultsPage(ListView):
 	model = Lab
@@ -78,6 +65,33 @@ class ProfilePage(ListView):
 	@method_decorator(login_required)
 	def get(self, request):
 		return render(request, self.template_name)
+
+class DictionaryPage(ListView):
+	model = Dictionary
+	template_name = "healthy/dictionary.html"
+	context_object_name = 'items'
+
+	@method_decorator(login_required)
+	def dispach(self, *args, **kwargs):
+		return super(DictionaryPage, self).dispach(*args,**kwargs)
+
+	def get_queryset(self):
+		return Dictionary.objects.all()
+
+class DictionaryItem(ListView):
+	model = Dictionary
+	template_name = 'healthy/modal_dictionary.html'
+	context_object_name = 'item'
+
+	@method_decorator(login_required)
+	def dispach(self, *args, **kwargs):
+		return super(DictionaryItem, self).dispach(*args,**kwargs)
+
+	def get_object(self):
+		return get_object_or_404(Item, pk=self.kwargs.get("pk"))
+
+	def get_queryset(self):
+		return Dictionary.objects.get(item_ref=self.get_object())
 
 
 class AddLabPage(ListView):

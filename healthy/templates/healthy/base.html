@@ -27,6 +27,8 @@
     <!-- Theme CSS -->
     <link href="{% static 'css/creative/creative.min.css' %}" rel="stylesheet">
 
+     <link href="{% static 'css/workaround.css' %}" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -72,7 +74,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="{% url 'charts' %}"> Charts</a></li>
+                    <li><a href="#compare"> Compare</a></li>
                     <li><a href="{% url 'results' %}">Lab results</a></li>
+                    <li><a href="{% url 'dictionary' %}">Dictionary</a></li>
                     <li><a href="/profile/"> Profile </a></li>
                     <li><a href="/logout/">Logout</a></li>
                 </ul>
@@ -92,7 +96,7 @@
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat!</p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+                    <!-- <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a> -->
                 </div>
             </div>
         </div>

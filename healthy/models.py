@@ -30,7 +30,7 @@ class UserProfile(models.Model):
 	user = models.ForeignKey('auth.User', unique=True)
 	gender = models.CharField(max_length=5, choices=GENDER_CHOICES, default=F)
 	dob = models.DateField('Date of birth',null=True)
-	blood_type = models.CharField(max_length=5, choices=BLOOD_TYPES, default=N)
+	blood_type = models.CharField(max_length=10, choices=BLOOD_TYPES, default=N)
 
 	def __str__(self):
 		return 'UserProfile ' + self.user.username
@@ -148,6 +148,14 @@ class Item(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class Dictionary(models.Model):
+	item_ref = models.ForeignKey(Item,related_name="ItemDictionary")
+	text = models.TextField("Text")
+
+	def __str__(self):
+		return self.item_ref.name
+
 
 class LabGeneral(models.Model):
 	threshold_min = models.DecimalField('Min Value', default=0, max_digits=10, decimal_places=3, null=True)

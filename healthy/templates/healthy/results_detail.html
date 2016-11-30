@@ -6,6 +6,7 @@
   {% block content %}
   {% if user.is_authenticated %}
 
+
     <div role="main" class="container">
         <br /> <br />
         <div id="title">
@@ -50,6 +51,7 @@
             <table class="table  table-striped">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Marker</th>
                         <th>Category</th>
                         <th>Abbreviation</th>
@@ -58,11 +60,13 @@
                         <th>Min Value</th>
                         <th>Max Value</th>
                         <th></th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                   {% for result in LabResults %}
                <tr>
+                         <td><a class="viewDictionary" rel="tooltip" data-placement="top"  title="Details" data-toggle="modal" id="close" data-target="#modal" href="{% url 'dictionary_item' pk=result.pk %}"><i class="fa fa-book fa-1x sr-contact text-primary"></i></a></td>
                          <td>{{ result.item_ref.name }}</td>
                          <td>{{ result.item_ref.category }}</td>
                          <td>{{ result.item_ref.abbr }}</td>
@@ -71,6 +75,8 @@
                          <td>{{ result.general_ref.threshold_min }} </td>
                          <td>{{ result.general_ref.threshold_max }} </td>
                          <td>{% if result.is_abnormal == True %} <span class="glyphicon glyphicon-warning-sign"> {% endif %}</td>
+                     
+                      
 
                 </tr>
                {% endfor %}
@@ -78,6 +84,9 @@
             </table>         
         </div>
          <br /> <br />
+
+
+                       
        
         <button class="btn btn-danger actionViewResults" rel="tooltip" data-placement="top" title="Add a result" onclick="location.href='{% url 'addLabResults' pk=lab.pk %}'">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Add marker
@@ -98,5 +107,11 @@
                 </div>
             </div>
         </aside>
+
+
+
+<div class="modal fade" id="modal"></div>
+<script src="{% static 'js/modal_helper.js' %}"></script>
+
 {% endif %}
 {% endblock %}

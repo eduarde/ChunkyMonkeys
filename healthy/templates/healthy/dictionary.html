@@ -1,0 +1,56 @@
+{% extends 'healthy/base.html' %}
+{% load staticfiles %}
+{% load gravatar %}
+
+  {% block content %}
+  <div role="main" class="container">
+
+      <br /><br />
+
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          {% for item in items %}
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ item.pk }}" aria-expanded="false" aria-controls="{{item.pk}}">
+                  <div id="container">
+                      <div class="row">
+                        <div class="col-md-6"> {{ item.item_ref.name }} </div>
+                        <div class="col-md-3"> {{ item.item_ref.abbr }} </div>
+                        <div class="col-md-3"> {{ item.item_ref.category }} </div>
+                      </div>
+                  </div>  
+                 
+                </a>
+              </h4>
+            </div>
+            <div id="{{item.pk}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <p>{{item.text}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+    
+      </div>
+   		
+ 
+   </div>
+
+   <hr><br />
+  	<aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>DICTIONARY</h2>
+                <a href="#about" class="btn btn-default btn-xl sr-button page-scroll">Back to top</a>
+            </div>
+        </div>
+    </aside>
+   
+ 
+ 
+
+ 	
+
+
+{% endblock %}
