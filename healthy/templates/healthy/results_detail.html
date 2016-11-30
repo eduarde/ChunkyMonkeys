@@ -1,6 +1,7 @@
 {% extends 'healthy/base.html' %}
 {% load staticfiles %}
 {% block extra_js%} <script src="http://malsup.github.com/jquery.form.js"></script> {% endblock %} 
+{% load gravatar %}
 
 
   {% block content %}
@@ -71,7 +72,7 @@
                          <td>{{ result.item_ref.category }}</td>
                          <td>{{ result.item_ref.abbr }}</td>
                          <td>{{ result.item_ref.um }}</td>
-    					           <td>{{ result.value }}</td>
+                                   <td>{{ result.value }}</td>
                          <td>{{ result.general_ref.threshold_min }} </td>
                          <td>{{ result.general_ref.threshold_max }} </td>
                          <td>{% if result.is_abnormal == True %} <span class="glyphicon glyphicon-warning-sign"> {% endif %}</td>
@@ -91,6 +92,46 @@
         <button class="btn btn-danger actionViewResults" rel="tooltip" data-placement="top" title="Add a result" onclick="location.href='{% url 'addLabResults' pk=lab.pk %}'">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Add marker
         </button>
+
+        <hr>
+
+       <!--  <div class="well well-lg">
+            {% for note in notes %}
+            <p>{{note.comment}}</p>
+            {% endfor %}
+        </div> -->
+
+        <br />
+        <div class="comments">
+
+        <div class="comment-wrap">
+            <div class="photo">
+                        <div class="avatar" style="background-image: url('{% gravatar_url user.email %}')"></div>
+                </div>
+                <div class="comment-block">
+                        <form action="">
+                                <textarea name="" id="" cols="30" rows="3" placeholder="Add comment..."></textarea>
+                        </form>
+                </div>
+        </div>    
+
+        {% for note in notes %}    
+        <div class="comment-wrap">
+                <div class="photo">
+                        <div class="avatar" style="background-image: url('{% gravatar_url user.email %}')"></div>
+                </div>
+                <div class="comment-block">
+                        <p class="comment-text">{{note.comment}}</p>
+                        <div class="bottom-comment">
+                                <div class="comment-date">{{note.pub_date}}</div>   
+                        </div>
+                </div>
+        </div>
+        {% endfor %}
+</div>
+
+</div>
+
      
  <!-- Modal -->
 
